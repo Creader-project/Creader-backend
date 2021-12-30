@@ -15,6 +15,7 @@ import sys
 from os.path import normpath, join
 from pathlib import Path
 
+import dj_database_url
 import django_heroku
 
 django_heroku.settings(config=locals(), staticfiles=False,logging=False)
@@ -178,6 +179,7 @@ DATABASES = {
         'PORT': '5432',
     }
 }
+DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
