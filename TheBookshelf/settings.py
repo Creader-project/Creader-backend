@@ -17,7 +17,7 @@ from pathlib import Path
 
 import django_heroku
 
-django_heroku.settings(locals(), staticfiles=False, allowed_hosts=False)
+django_heroku.settings(config=locals(), staticfiles=False,logging=False)
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -41,7 +41,7 @@ SECRET_KEY = os.getenv(SECRET_KEY_CODE, 'change-in-production')
 # SECURITY WARNING: don't run with debug turned on in production!
 if "DYNO" in os.environ:
     STATIC_ROOT = 'static'
-    ALLOWED_HOSTS = ['creader-test.herokuapp.com']
+    ALLOWED_HOSTS = ['creader-test.herokuapp.com',]
     DEBUG = True
 else:
     DEBUG = True
@@ -124,7 +124,8 @@ CORS_ORIGIN_WHITELIST = [
     "http://localhost:8000",
     "http://localhost:8081",
     "http://127.0.0.1:8000",
-    "http://localhost:3000"
+    "http://localhost:3000",
+    'creader-test.herokuapp.com'
 ]
 CORS_ORIGIN_ALLOW_ALL = True
 CORS_ALLOW_CREDENTIALS = True  # allow cookie
