@@ -32,7 +32,7 @@ SECRET_KEY = 'django-insecure-hu3_1d29+@zz0t^g59miaqx%1#o7#v^c8#7eupfy-n#x0y)b=x
 DEBUG = True
 
 ALLOWED_HOSTS = []
-AUTH_USER_MODEL = 'user.AuthUser'
+AUTH_USER_MODEL = 'app.user.AuthUser'
 
 # Application definition
 
@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'bookitem.apps.BookitemConfig',
     'comment.apps.CommentConfig',
     'transactions.apps.TransactionsConfig',
+    'site_operation.apps.SiteOperationConfig',
 
     'wagtail.contrib.forms',
     'wagtail.contrib.redirects',
@@ -108,7 +109,7 @@ CORS_ORIGIN_WHITELIST = [
     "http://localhost:8000",
     "http://localhost:8081",
     "http://127.0.0.1:8000",
-    "http://localhost:800"
+    "http://localhost:3000"
 ]
 CORS_ORIGIN_ALLOW_ALL = True
 CORS_ALLOW_CREDENTIALS = True  # allow cookie
@@ -153,8 +154,12 @@ WSGI_APPLICATION = 'TheBookshelf.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'Creader',
+        'USER': 'postgres',
+        'PASSWORD': '1234',
+        'HOST': 'localhost',
+        'PORT': '5432',
     }
 }
 

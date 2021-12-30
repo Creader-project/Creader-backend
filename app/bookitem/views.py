@@ -12,7 +12,8 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 
 from .models import Book, BookCategory, Chapter
-from .serializers import BookSerializer, CategorySerializer, ChapterSerializer, AuthorChapterDetailSerializer
+from .serializers import BookSerializer, CategorySerializer, ChapterSerializer, AuthorChapterDetailSerializer, \
+    ChapterDetailSerializer
 
 
 # Create your views here.
@@ -25,7 +26,7 @@ class BookListView(ListAPIView):
 
 
 class ChapterListView(ListAPIView):
-    serializer_class = ChapterSerializer
+    serializer_class = ChapterDetailSerializer
     permission_classes = [AllowAny]
 
     def get_queryset(self):
@@ -97,19 +98,3 @@ class AuthorChapterDetailView(RetrieveUpdateDestroyAPIView):
 #
 
 
-class TopBookByCategory(ListAPIView):
-    serializer_class = BookSerializer
-
-    def get_queryset(self):
-        request_item = self.request.data['request_item']
-        request_category = self.request.data['request_category']
-        return Book.objects.filter(book_type__category_name=request_category).annotate(Count(request_item)).order_by(
-            '-' + request_item)[:10]
-
-
-class TopBookByAttribute(ListAPIView):
-    serializer_class = BookSerializer
-
-    def get_queryset(self):
-        request_item = self.request.data['request_item']
-        return Book.objects.annotate(Count(request_item)).order_by('-' + request_item)[:10]

@@ -3,6 +3,7 @@ from django.shortcuts import render
 
 # Create your views here.
 from django.shortcuts import render
+from rest_framework.generics import RetrieveUpdateDestroyAPIView
 from rest_framework.views import APIView
 from rest_framework import status, generics
 from rest_framework.response import Response
@@ -15,16 +16,18 @@ class CreateAccount(APIView):
     permission_classes = [permissions.AllowAny]
 
     def post(self, request):
+        # print(request.data)
         reg_serializer = RegistrationSerializer(data=request.data)
         if reg_serializer.is_valid():
             new_user = reg_serializer.save()
+            # print(new_user.email)
             if new_user:
                 # add these
                 r = requests.post('http://127.0.0.1:8000/api-auth/token', data={
                     'username': new_user.email,
                     'password': request.data['password'],
-                    'client_id': 'BlVMKZ9ZDGg3t6kiHw88YoyOsYFro31RtIM3Wmqe',
-                    'client_secret': 'LhRlZjzFJje9g8UahoRFfjg9AFqIbycxuOpS3xLyJ8ZBMF6z8Fcy9Md9C8yoQsb15EV3X4cQU0MeKHANxLZKyDyRkGoAya7TkCc1FEzBo47UIIwRdwMVP16R2leeOHRf',
+                    'client_id': 'IFEP4IQWLwwg1hhsE2hykjDMKbyibWJnvy7spiEw',
+                    'client_secret': 'xsEJ3jLIlJhTs4ZMFzad2z2I8z3Pzcxq5h8zdHu09VLokFoj8a2dbD3zbsuYvCd6ooKId0vid8TAkPAUqIAxF1JsWNgoRyc7W3ZMVA6RgYaZ3VQ8u81tbar0BoXfVVMz',
                     'grant_type': 'password'
                 })
                 return Response(r.json(), status=status.HTTP_201_CREATED)
@@ -53,3 +56,9 @@ class AuthorLoginView(APIView):
         if serializer.data['role'] == 2:
             return Response(serializer.data, status=status.HTTP_200_OK)
         return Response({'message': "You need to be an Author in order to log in"}, status=status.HTTP_400_BAD_REQUEST)
+
+
+class UserDetailView(RetrieveUpdateDestroyAPIView):
+    permission_classes = [permissions.IsAuthenticated]
+    queryset = AuthUser.objects.all()
+    serializer_class = UsersSerializer
