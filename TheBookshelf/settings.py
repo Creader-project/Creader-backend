@@ -39,9 +39,13 @@ SOCIAL_AUTH_URL_NAMESPACE = 'drf'
 SECRET_KEY_CODE = 'django-insecure-hu3_1d29+@zz0t^g59miaqx%1#o7#v^c8#7eupfy-n#x0y)b=x'
 SECRET_KEY = os.getenv(SECRET_KEY_CODE, 'change-in-production')
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-ALLOWED_HOSTS = []
+if "DYNO" in os.environ:
+    STATIC_ROOT = 'static'
+    ALLOWED_HOSTS = ['creader-test.herokuapp.com']
+    DEBUG = False
+else:
+    DEBUG = True
+    ALLOWED_HOSTS = []
 AUTH_USER_MODEL = 'user.AuthUser'
 
 # Application definition
