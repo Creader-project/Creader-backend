@@ -10,10 +10,14 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 import datetime
+import os
 import sys
 from os.path import normpath, join
 from pathlib import Path
-import os
+
+import django_heroku
+
+django_heroku.settings(locals(), staticfiles=False, allowed_hosts=False)
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -32,8 +36,8 @@ SOCIAL_AUTH_URL_NAMESPACE = 'drf'
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-hu3_1d29+@zz0t^g59miaqx%1#o7#v^c8#7eupfy-n#x0y)b=x'
-
+SECRET_KEY_CODE = 'django-insecure-hu3_1d29+@zz0t^g59miaqx%1#o7#v^c8#7eupfy-n#x0y)b=x'
+SECRET_KEY = os.getenv(SECRET_KEY_CODE, 'change-in-production')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
@@ -93,6 +97,7 @@ SITE_ID = 1
 
 # Middleware
 MIDDLEWARE = [
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
