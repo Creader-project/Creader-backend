@@ -42,7 +42,7 @@ SECRET_KEY = os.getenv(SECRET_KEY_CODE, 'change-in-production')
 if "DYNO" in os.environ:
     STATIC_ROOT = 'static'
     ALLOWED_HOSTS = ['creader-test.herokuapp.com']
-    DEBUG = False
+    DEBUG = True
 else:
     DEBUG = True
     ALLOWED_HOSTS = []
