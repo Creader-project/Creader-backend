@@ -127,7 +127,7 @@ CORS_ORIGIN_WHITELIST = [
     "http://localhost:8081",
     "http://127.0.0.1:8000",
     "http://localhost:3000",
-    'creader-test.herokuapp.com'
+    'http://creader-test.herokuapp.com'
 ]
 CORS_ORIGIN_ALLOW_ALL = True
 CORS_ALLOW_CREDENTIALS = True  # allow cookie
@@ -173,7 +173,7 @@ WSGI_APPLICATION = 'TheBookshelf.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'Creader',
+        'NAME': 'd63n0crsv08vnf',
         'USER': 'onmnzarjlibhbz',
         'PASSWORD': '98ed047e8dfc8f8fd97bbbd2068c597142013c3d6f3b8306856f8abbc9eb88dc',
         'HOST': 'ec2-34-254-120-2.eu-west-1.compute.amazonaws.com',
