@@ -169,18 +169,17 @@ WSGI_APPLICATION = 'TheBookshelf.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'Creader',
-        'USER': 'onmnzarjlibhbz',
-        'PASSWORD': '98ed047e8dfc8f8fd97bbbd2068c597142013c3d6f3b8306856f8abbc9eb88dc',
-        'HOST': 'ec2-34-254-120-2.eu-west-1.compute.amazonaws.com',
-        'PORT': '5432',
-    }
-}
-DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
-
+DATABASES = {'default': {dj_database_url.config(conn_max_age=600, ssl_require=True)}}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': 'Creader',
+#         'USER': 'onmnzarjlibhbz',
+#         'PASSWORD': '98ed047e8dfc8f8fd97bbbd2068c597142013c3d6f3b8306856f8abbc9eb88dc',
+#         'HOST': 'ec2-34-254-120-2.eu-west-1.compute.amazonaws.com',
+#         'PORT': '5432',
+#     }
+# }
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
 
