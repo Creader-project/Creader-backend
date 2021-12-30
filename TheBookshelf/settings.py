@@ -10,12 +10,18 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 import datetime
+import sys
+from os.path import normpath, join
 from pathlib import Path
 import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+SITE_NAME = 'Creader'
+
+PROJECT_ROOT = os.path.dirname(BASE_DIR)
+sys.path.append(normpath(join(BASE_DIR, 'apps')))
 # ADD THESE TWO LINES
 TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
 FRONTEND_DIR = os.path.join(BASE_DIR, 'frontend')
