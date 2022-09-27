@@ -15,28 +15,45 @@ from .serializers import TopUpItemSerializer, SubscriptionSerializer, UserProfil
 # Create your views here.
 
 class TopUpView(ListAPIView):
+    """
+    View for top up items.
+    GET: Returns all top up items.
+    """
     serializer_class = TopUpItemSerializer
     queryset = Top_up_item.objects.all()
     permission_classes = [AllowAny]
 
 
 class SubscriptionView(ListAPIView):
+    """
+    View for subscription plans.
+    GET: Returns all subscription plans.
+    """
     serializer_class = SubscriptionSerializer
     queryset = Subscription_Plan.objects.filter(is_featured=True)
     permission_classes = [AllowAny]
 
 
 class UserProfileView(ModelViewSet):
+    """
+    View for user profile.
+    GET: Returns user profile.
+    """
     permission_classes = [IsAuthenticated]
     serializer_class = UserProfileSerializer
     queryset = User_profile.objects.all()
 
     def list(self, request, *args, **kwargs):
+        """
+        Returns user profile.
+        """
+        # Get user profile, if not exists create one.
         user_profile, created = User_profile.objects.get_or_create(plan_id=3, user_id=self.request.user.id)
-        print(user_profile)
-        print(created)
+        # print(user_profile)
+        # print(created)
+        # if created, then return user profile.
         if user_profile:
-            print('exist')
+            # print('exist')
             user_profile = User_profile.objects.filter(user_id=self.request.user.id).first()
             serializer = UserProfileSerializer(user_profile)
             return Response(serializer.data)
@@ -45,6 +62,9 @@ class UserProfileView(ModelViewSet):
 
 @api_view(['POST'])
 def cancel_plan(request):
+    """
+    Cancel subscription plan.
+    """
     user_profile = User_profile.objects.get(user_id=request.user.id)
     plan_free = Subscription_Plan.objects.get(title='Free')
 

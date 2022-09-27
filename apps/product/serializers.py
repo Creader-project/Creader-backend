@@ -9,6 +9,9 @@ from rest_framework import serializers
 
 
 class UserSerializer(serializers.ModelSerializer):
+    """
+    Serializer for users.
+    """
     class Meta:
         model = AuthUser
         fields = (
@@ -21,18 +24,27 @@ class UserSerializer(serializers.ModelSerializer):
 
 
 class TopUpItemSerializer(serializers.ModelSerializer):
+    """
+    Serializer for top up items.
+    """
     class Meta:
         model = Top_up_item
         fields = "__all__"
 
 
 class SubscriptionSerializer(serializers.ModelSerializer):
+    """
+    Serializer for subscriptions.
+    """
     class Meta:
         model = Subscription_Plan
         fields = "__all__"
 
 
 class UserProfileSerializer(serializers.ModelSerializer):
+    """
+    Serializer for user profile.
+    """
     user = UserSerializer(read_only=True)
     plan = SubscriptionSerializer(read_only=True)
 

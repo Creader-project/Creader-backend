@@ -45,7 +45,8 @@ class AllUsers(generics.ListAPIView):
     queryset = AuthUser.objects.all()
     serializer_class = UsersSerializer
 
-
+# Get user by id
+# GET /api/users/<id>/
 class ReaderLoginView(APIView):
     permission_classes = (permissions.IsAuthenticated,)
 
@@ -53,7 +54,8 @@ class ReaderLoginView(APIView):
         serializer = UsersSerializer(self.request.user)
         return Response(serializer.data)
 
-
+# Get author by id
+# GET /api/users/<id>/
 class AuthorLoginView(APIView):
     permission_classes = (permissions.IsAuthenticated,)
 

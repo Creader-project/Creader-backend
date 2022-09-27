@@ -8,6 +8,9 @@ from .models import AuthUser
 
 
 class RegistrationSerializer(serializers.ModelSerializer):
+    """
+    Serializer for registering a new user.
+    """
     class Meta:
         model = AuthUser
         fields = ('email', 'username', 'password', 'first_name')
@@ -23,6 +26,9 @@ class RegistrationSerializer(serializers.ModelSerializer):
 
 
 class UsersSerializer(serializers.ModelSerializer):
+    """
+    Serializer for users.
+    """
     class Meta:
         model = AuthUser
         fields = "__all__"

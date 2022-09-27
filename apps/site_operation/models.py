@@ -12,6 +12,9 @@ def image_upload_path(instance, fileanme):
 
 
 class IndexImage(models.Model):
+    """
+    Index Image Model for CMS
+    """
     LINK_STATUS = (
         ('Inactive', u'Inactive'),
         ('Active', u'Active')
@@ -32,6 +35,9 @@ class IndexImage(models.Model):
 
 
 class IndexPage(models.Model):
+    """
+    Index Page Model for CMS
+    """
     LINK_STATUS=(
         ('Inactive', u'Inactive'),
         ('Active', u'Active')
