@@ -10,12 +10,18 @@ from user.models import AuthUser
 
 
 class CommentManager(models.Manager):
+    """
+    comment manager self defined
+    """
     def all(self):
         qs = super(CommentManager, self).filter(parent=None)
         return qs
 
 
 class Comment(models.Model):
+    """
+    comment model
+    """
     comment = models.TextField()
     created_on = models.DateTimeField(verbose_name='Created time', auto_now_add=True, editable=False)
     book = models.ForeignKey(Book, on_delete=models.CASCADE, related_name='book_commnet')

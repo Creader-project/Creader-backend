@@ -18,6 +18,9 @@ from product.models import User_profile
 @require_POST
 @csrf_exempt
 def stripe_webhook(request):
+    """
+    This function is used to handle the stripe webhook
+    """
     stripe.api_key = settings.STRIPE_SECRET_KEY
     webhook_key = settings.STRIPE_WEBHOOK_KEY
     payload = request.body

@@ -10,6 +10,10 @@ from .models import Chapter
 
 
 class CustomerHyperlink(serializers.HyperlinkedIdentityField):
+    """
+    This class is used to create a hyperlink for the chapter
+    we need to pass the book_id and chapter_id to the url
+    """
     view_name = 'chapter-detail'
 
     # queryset = Chapter.objects.all()

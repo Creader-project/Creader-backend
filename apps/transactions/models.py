@@ -7,6 +7,9 @@ from product.models import Top_up_item
 
 # 此处所有支付选项均基于Creader币
 class Transaction_History(models.Model):  # Creader 币支付记录
+    """
+    This model is used to store the transaction history
+    """
     # purchase item - Creader购买的物品
     item = models.ForeignKey(Top_up_item, default=None, on_delete=models.CASCADE,null=True)
     # 购买用户
@@ -55,6 +58,9 @@ class Transaction_History(models.Model):  # Creader 币支付记录
 
 # 作者收入记录
 class Income_History(models.Model):  # 收入记录
+    """
+    This model is used to store the income history
+    """
     # 作者
     Author = models.ForeignKey(AuthUser, default=None, related_name='Author_ID', on_delete=models.CASCADE)
     # 打赏/购买人

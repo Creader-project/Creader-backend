@@ -17,7 +17,56 @@ from .serializers import BookSerializer, CategorySerializer, ChapterSerializer, 
 
 
 # Create your views here.
+"""
+BookListView
+This view is used to list all the books
+required: N/A
+GET: List all the books
 
+ChapterListView
+This view is used to list all the chapters
+required: N/A
+GET: List all the chapters
+
+BookCategoryDetailView
+This view is used to list all the books in a category
+GET: List all the books in a category
+
+BookDetailView
+This view is used to retrieve a book publicly
+required: N/A
+GET: Retrieve a book
+
+ChapterDetailView
+This view is used to retrieve a chapter publicly
+required: N/A
+GET: Retrieve a chapter
+
+AuthorBookViewSet
+This view is used to create and list a book for author
+required: Login
+POST: Create a book
+GET: List all the books
+
+AuthorBookDetailView
+This view is used to retrieve, update and delete a book for author
+required: Login
+GET: Retrieve a book
+PUT: Update a book
+DELETE: Delete a book
+
+AuthorChapterView
+This view is used to create and list a chapter for author
+required: Login
+POST: Create a chapter
+GET: List all the chapters
+
+AuthorChapterDetailView
+This view is used to retrieve, update and delete a chapter for author
+required: Login
+GET: Retrieve a chapter
+PUT: Update a chapter
+"""
 
 class BookListView(ListAPIView):
     queryset = Book.objects.all()

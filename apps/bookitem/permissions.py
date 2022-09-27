@@ -8,6 +8,8 @@ from product.models import User_profile
 
 
 class IsAuthorPermission(permissions.BasePermission):
-
+    """
+    This class is used to check if the user is the author of the book
+    """
     def has_permission(self, request, view):
         return bool(request.user.role == 2)

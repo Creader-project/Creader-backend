@@ -5,6 +5,9 @@ from wagtail.contrib.modeladmin.options import (
 
 
 class CommentAdmin(ModelAdmin):
+    """
+    This class is used to register the comment model
+    """
     model = Comment
     menu_label = 'Comment'  # ditch this to use verbose_name_plural from model
     menu_icon = 'pilcrow'  # change as required

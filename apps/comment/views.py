@@ -11,8 +11,22 @@ from notifications.signals import notify  # 消息通知
 
 from user.models import AuthUser
 
+"""
+CommentPublicView
+This view is used to create the comment and notification for the book
+GET: get the comment list
+POST: create the comment
 
+CommentDetailAPIView
+This view is used to get the comment detail
+GET: get the comment detail
+PUT: update the comment
+DELETE: delete the comment
+"""
 class CommentPublicView(ListCreateAPIView):
+    """
+    This view is used to list all the comments
+    """
     serializer_class = CommentSerializer
     queryset = Comment.objects.all()
     permission_classes = [IsAuthenticatedOrReadOnly]
@@ -46,6 +60,9 @@ class CommentPublicView(ListCreateAPIView):
 
 
 class CommentDetailAPIView(RetrieveUpdateDestroyAPIView):
+    """
+    This view is used to retrieve, update and delete a comment for author
+    """
     queryset = Comment.objects.filter(id__gte=0)
     serializer_class = CommentSerializer
 

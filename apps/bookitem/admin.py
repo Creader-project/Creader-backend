@@ -1,5 +1,10 @@
 from django.contrib import admin
 
+"""
+Wagtail admin configuration for the bookitem app
+"""
+
+
 # Register your models here.
 from .models import Book, BookCategory, Chapter
 from wagtail.contrib.modeladmin.options import (

@@ -55,6 +55,9 @@ def get_stripe_pub_key(request):
 
 @api_view(['POST'])
 def create_checkout_session(request):
+    """
+    This view is used to create the checkout session
+    """
     stripe.api_key = settings.STRIPE_SECRET_KEY
     data = request.data
     print(request.user.id)
@@ -154,6 +157,9 @@ def create_billing(billing):
 
 @api_view(['POST'])
 def check_session(request):
+    """
+    This view is used to check the session
+    """
     stripe.api_key = settings.STRIPE_SECRET_KEY
     error = ''
     try:

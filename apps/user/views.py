@@ -12,11 +12,16 @@ from rest_framework import permissions
 from .models import AuthUser
 
 
+# Create user object and return token
+# GET /api/users/registration/
 class CreateAccount(APIView):
+
     permission_classes = [permissions.AllowAny]
 
     def post(self, request):
-        # print(request.data)
+        """
+        Create a new user account.
+        """
         reg_serializer = RegistrationSerializer(data=request.data)
         if reg_serializer.is_valid():
             new_user = reg_serializer.save()
@@ -33,7 +38,8 @@ class CreateAccount(APIView):
                 return Response(r.json(), status=status.HTTP_201_CREATED)
         return Response(reg_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-
+# Get all users
+# GET /api/users/
 class AllUsers(generics.ListAPIView):
     permission_classes = [permissions.AllowAny]
     queryset = AuthUser.objects.all()

@@ -7,6 +7,9 @@ from product.models import Top_up_item, User_profile, Subscription_Plan
 # Create your models here.
 
 class Billing_address(models.Model):
+    """
+    This model is used to store the billing address
+    """
     user = models.ForeignKey(AuthUser, related_name='billing_address', on_delete=models.SET_NULL, blank=True, null=True)
 
     first_name = models.CharField(max_length=100)
@@ -32,6 +35,9 @@ class Billing_address(models.Model):
 
 
 class Order(models.Model):
+    """
+    This model is used to store the order
+    """
     ORDERED = 'unpaid'
     COMPLETED = 'completed'
     CANCELLED = 'cancelled'
@@ -61,6 +67,9 @@ class Order(models.Model):
 
 
 class OrderItem(models.Model):
+    """
+    This model is used to store the order items
+    """
     order = models.ForeignKey(Order, related_name='order', on_delete=models.CASCADE)
     topup = models.ForeignKey(Top_up_item, related_name='topup', on_delete=models.DO_NOTHING, blank=True, null=True)
     plan = models.ForeignKey(Subscription_Plan, related_name='plan', on_delete=models.DO_NOTHING, blank=True, null=True)

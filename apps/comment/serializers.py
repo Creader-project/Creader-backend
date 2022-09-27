@@ -11,6 +11,9 @@ from .models import Comment
 
 
 class CommentChildSerializer(serializers.ModelSerializer):
+    """
+    This class is used to serialize the child comment
+    """
     class Meta:
         model = Comment
         exclude = [
@@ -19,6 +22,9 @@ class CommentChildSerializer(serializers.ModelSerializer):
 
 
 class CommentSerializer(serializers.ModelSerializer):
+    """
+    This class is used to serialize the comment
+    """
     # url = HyperlinkedIdentityField(
     #     view_name='comment:list')
     replies = SerializerMethodField()

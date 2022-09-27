@@ -11,6 +11,10 @@ from .models import Bookcase, BookMark  #
 
 
 class BookMarkSerializer(serializers.ModelSerializer):
+    """
+    BookMark serializer
+    This serializer is used to serialize the bookmark model
+    """
     user = serializers.HiddenField(
         default=serializers.CurrentUserDefault()
     )
@@ -20,6 +24,14 @@ class BookMarkSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
     def create(self, validated_data):
+        """
+        There are three conditions for creating a bookmark:
+        1. The user want to mark a chapter
+            a. The user has the book in his bookcase
+            b. The user does not have the book in his bookcase
+        3. The user has bookmarked the chapter, and the bookmark is not the latest
+        Create and return a new `Snippet` instance, given the validated data.
+        """
         chapter_id_val = validated_data.pop('chapter')
         user_id_val = validated_data.pop('user')
         try:
@@ -44,6 +56,10 @@ class BookMarkSerializer(serializers.ModelSerializer):
 
 
 class BookMarkDetailSerializer(serializers.ModelSerializer):
+    """
+    BookMark detail serializer
+    This serializer is used to serialize the bookmark model
+    """
     chapter = ChapterDetailSerializer()
 
     class Meta:
@@ -52,6 +68,11 @@ class BookMarkDetailSerializer(serializers.ModelSerializer):
 
 
 class BookCaseSerializer(serializers.ModelSerializer):
+    """
+    Bookcase serializer
+    This serializer is used to serialize the bookcase model
+    This unique together validator is used to check if the user has the book in his bookcase
+    """
     user = serializers.HiddenField(
         default=serializers.CurrentUserDefault()
     )

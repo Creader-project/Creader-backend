@@ -7,6 +7,11 @@ from bookitem.models import Book
 
 
 class BookMark(models.Model):
+    """
+    BookMark model
+    This model is used to store the bookmark of the user
+    """
+
     user = models.ForeignKey(AuthUser, on_delete=models.CASCADE, verbose_name='User', blank=True, null=True,
                              related_name='user_marked')
     chapter = models.ForeignKey(Chapter, on_delete=models.CASCADE, verbose_name='Chapter',
@@ -22,6 +27,10 @@ class BookMark(models.Model):
 
 
 class Bookcase(models.Model):
+    """
+    Bookcase model
+    This model is used to store the bookcase of the user
+    """
     user = models.ForeignKey(AuthUser, on_delete=models.CASCADE, verbose_name='User bookcase')
     book = models.ForeignKey(Book, on_delete=models.CASCADE, verbose_name='Book', blank=True, null=True)
     bookmark = models.ForeignKey(BookMark, on_delete=models.CASCADE, verbose_name='bookmark',

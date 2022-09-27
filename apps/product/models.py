@@ -4,6 +4,9 @@ from user.models import AuthUser
 
 
 class Top_up_item(models.Model):
+    """
+    This model is used to store the top up items
+    """
     title = models.CharField(max_length=255)
     slug = models.SlugField(max_length=255)
     description = models.TextField(blank=True, null=True)
@@ -25,6 +28,9 @@ class Top_up_item(models.Model):
 
 
 class Subscription_Plan(models.Model):
+    """
+    This model is used to store the subscription plans
+    """
     SUBSCRIPTION_TYPE = (
         ('Gold', 'Gold'),
         ('Sliver', 'Sliver'),
@@ -55,6 +61,9 @@ class Subscription_Plan(models.Model):
 
 
 class User_profile(models.Model):
+    """
+    This model is used to store the user profile
+    """
     PLAN_ACTIVE = 'Active'
     PLAN_INACTIVE = 'Inactive'
     PLAN_CANCEL = 'Cancel'

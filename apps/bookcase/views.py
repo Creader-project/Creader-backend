@@ -3,7 +3,23 @@ from rest_framework.generics import CreateAPIView, ListCreateAPIView, DestroyAPI
 from rest_framework.permissions import IsAuthenticated
 
 from .serializer import *
+"""
+BookMark view
+This view is used to create a bookmark
+required: Login
+POST: Create a bookmark
 
+BookcaseView
+This view is used to create and list a bookcase
+required: Login
+POST: Create a bookcase
+GET: List all the bookcase
+
+BookcaseDeleteView
+This view is used to delete a bookcase
+required: Login
+DELETE: Delete a bookcase
+"""
 
 # Create your views here.
 class BookcaseView(ListCreateAPIView):

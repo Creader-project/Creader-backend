@@ -12,6 +12,9 @@ from wagtail.images.edit_handlers import ImageChooserPanel
 
 
 class BookCategory(models.Model):
+    """
+    This class is used to define the book category
+    """
     category_name = models.CharField(default="", max_length=30, verbose_name='Category name')
     category_code = models.CharField(default="", max_length=30, verbose_name='Category code')
     is_tab = models.BooleanField(default=False, verbose_name='is Navigate')
@@ -31,6 +34,9 @@ def image_upload_path(instance, fileanme):
 
 
 class Book(models.Model):
+    """
+    This class is used to define the book
+    """
     BOOK_STATUS = (
         ('Ongoing', u'Ongoing'),
         ('Completed', u'Completed')
@@ -77,6 +83,9 @@ class Book(models.Model):
 
 
 class Chapter(models.Model):
+    """
+    This class is used to define the book chapter
+    """
     PUBLISH_STATUS = (
         ('Published', u'Published'),
         ('Draft', u'Draft'),

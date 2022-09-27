@@ -3,6 +3,10 @@
 __author__ = 'Tim'
 __date__ = '13/08/2021 00:22'
 
+"""
+This file is used to create the pagination for the comment
+"""
+
 from rest_framework.pagination import (
     LimitOffsetPagination,
     PageNumberPagination,
